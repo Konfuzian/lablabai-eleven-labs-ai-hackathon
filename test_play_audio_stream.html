@@ -7,51 +7,74 @@
 </head>
 <body>
 	<section data-player>
-		<button type="button" data-player-play>Play text</button>
-		<br />
+		<select data-player-voices><!-- options will be populated on load --></select>
+		<textarea data-player-text multiline columns="10" placeholder="Insert a text here"></textarea><br />
+		<button data-player-play type="button">Play text</button><br />
 		<audio data-player-output controls></audio>
 	</div>
 
 	<script type="text/javascript">
-		function playText() {
-			const voice_id = '21m00Tcm4TlvDq8ikWAM';
-			const text = 'call me baby, she said seductively';
 
-			const tts_url = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream`;
+		// we use objects to simulate named parameters as in https://masteringjs.io/tutorials/fundamentals/parameters
 
-			const headers = {
-			  "Content-Type": "application/json",
-			  "xi-api-key": "a5c043e13ce68da1077daa5cb776c59b"
-			};
+		const 
+		getOptions = ({ text = '', model_id = "eleven_monolingual_v1", stability = 0.5, similarity_boost = 0.5 } = {}) => ({
+			method: 'POST',
+			body: JSON.stringify({
+				text: text,
+				model_id: model_id,
+				voice_settings: {
+					stability: stability,
+					similarity_boost: similarity_boost
+				}
+			}),
+			headers: {
+				"Content-Type": "application/json",
+				"xi-api-key": "a5c043e13ce68da1077daa5cb776c59b"
+			}
+		}),
 
-			const data = {
-			  text: text,
-			  model_id: "eleven_monolingual_v1",
-			  voice_settings: {
-			    stability: 0.5,
-			    similarity_boost: 0.5
-			  }
-			};
+		getUrl = ({ voice_id = '21m00Tcm4TlvDq8ikWAM' } = {}) => `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream`,
 
-
-			fetch(tts_url, { method: 'POST', body: JSON.stringify(data), headers: headers })
+		fetchAndPlayAudio = ({
+			text = undefined,
+			output = undefined,
+			voice_id = '21m00Tcm4TlvDq8ikWAM',
+			model_id = "eleven_monolingual_v1",
+			stability = 0.5,
+			similarity_boost = 0.5
+		} = {}) => {
+			if (text === undefined || output === undefined) return;  // this should never happen
+			fetch(
+				getUrl({ voice_id: voice_id }),
+				getOptions({text: text, model_id: model_id, stability: stability, similarity_boost: similarity_boost}))
 			  .then(response => response.blob())
 			  .then(blob => {
-			    let url = window.URL.createObjectURL(blob);
-			    let audio = document.querySelector('[data-player-output]');
-			    audio.src = url;
-			    audio.play();
+			    output.src = window.URL.createObjectURL(blob);
+			    output.play();
 			  })
 			  .catch(error => console.error(error));
-		}
+		},
 
-		document.querySelectorAll("[data-player]").forEach(el => {
-			const play = el.querySelector("[data-player-play]");
+		setupPlayer = () => document.querySelectorAll("[data-player]").forEach(el => {
+			const 
+			play = el.querySelector("[data-player-play]"),
+			voices = el.querySelector("[data-player-voices]"),
+			text = el.querySelector("[data-player-text]"),
+			output = el.querySelector("[data-player-output]");
 
 			play.addEventListener("click", e => {
-				playText()
+				fetchAndPlayAudio({
+					text: text.value,
+					output: output,
+					voice_id: '21m00Tcm4TlvDq8ikWAM'
+				});
 			})
-		})
+		}),
+
+		// actual setup is here:
+		setupPlayer();
+
 	</script>
 
 </body>
