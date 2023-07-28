@@ -21,8 +21,8 @@
 	<script type="text/javascript">
 		document.querySelectorAll("[data-subscriptions]").forEach(el => {
 			const
-			load = el.querySelector("[data-subscriptions-load"),
-			output = el.querySelector("[data-subscriptions-output");
+			load = el.querySelector("[data-subscriptions-load]"),
+			output = el.querySelector("[data-subscriptions-output]");
 
 			load.addEventListener("click", async e => {
 				const response = await fetch("https://www.youtube.com/feed/subscription");
