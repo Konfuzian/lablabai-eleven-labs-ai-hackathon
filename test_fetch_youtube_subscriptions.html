@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fetching user subscriptions from youtube website</title>
+</head>
+<body>
+	Conclusion: We cannot just fetch youtube content from the frontend because it gives a CORS error (who would have thunk it)...
+	So we have to set up the youtube API instead: https://developers.google.com/youtube/v3/getting-started
+	and then use like https://developers.google.com/youtube/v3/docs/subscriptions/list
+	to get the subscriptions, and use those subscriptions to get the latest videos for each channel,
+	and then sort those by most recent and work with that instead yay.
+
+	<section data-subscriptions>
+		<button type="button" data-subscriptions-load>Load Subscriptions</button>
+		<br />
+		<output id="output" data-subscriptions-output></output>
+	</div>
+
+	<script type="text/javascript">
+		document.querySelectorAll("[data-subscriptions]").forEach(el => {
+			const
+			load = el.querySelector("[data-subscriptions-load"),
+			output = el.querySelector("[data-subscriptions-output");
+
+			load.addEventListener("click", async e => {
+				const response = await fetch("https://www.youtube.com/feed/subscription");
+				output.textContent = response;
+			})
+		})
+	</script>
+
+</body>
+</html>
