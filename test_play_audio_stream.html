@@ -7,8 +7,8 @@
 </head>
 <body>
 	<section data-player>
-		<select data-player-voices><!-- options will be populated on load --></select>
-		<textarea data-player-text multiline columns="10" placeholder="Insert a text here"></textarea><br />
+		<select data-player-voices><!-- options will be populated on load --></select><br />
+		<textarea data-player-text multiline cols="100" rows="10" placeholder="Insert a text here"></textarea><br />
 		<button data-player-play type="button">Play text</button><br />
 		<audio data-player-output controls></audio>
 	</div>
@@ -17,63 +17,81 @@
 
 		// we use objects to simulate named parameters as in https://masteringjs.io/tutorials/fundamentals/parameters
 
-		const 
-		getOptions = ({ text = '', model_id = "eleven_monolingual_v1", stability = 0.5, similarity_boost = 0.5 } = {}) => ({
-			method: 'POST',
-			body: JSON.stringify({
-				text: text,
-				model_id: model_id,
-				voice_settings: {
-					stability: stability,
-					similarity_boost: similarity_boost
+		function getOptions({ text = '', model_id = "eleven_monolingual_v1", stability = 0.5, similarity_boost = 0.5 } = {}) {
+			return {
+				method: 'POST',
+				body: JSON.stringify({
+					text: text,
+					model_id: model_id,
+					voice_settings: {
+						stability: stability,
+						similarity_boost: similarity_boost
+					}
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					"xi-api-key": "a5c043e13ce68da1077daa5cb776c59b"
 				}
-			}),
-			headers: {
-				"Content-Type": "application/json",
-				"xi-api-key": "a5c043e13ce68da1077daa5cb776c59b"
-			}
-		}),
+			};
+		}
 
-		getUrl = ({ voice_id = '21m00Tcm4TlvDq8ikWAM' } = {}) => `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream`,
+		function getUrl({ voice_id = '21m00Tcm4TlvDq8ikWAM' } = {}) {
+			return `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream`;
+		}
 
-		fetchAndPlayAudio = ({
+		function fetchAndPlayAudio({
 			text = undefined,
 			output = undefined,
-			voice_id = '21m00Tcm4TlvDq8ikWAM',
+			voice_id = undefined,
 			model_id = "eleven_monolingual_v1",
 			stability = 0.5,
 			similarity_boost = 0.5
-		} = {}) => {
-			if (text === undefined || output === undefined) return;  // this should never happen
-			fetch(
-				getUrl({ voice_id: voice_id }),
-				getOptions({text: text, model_id: model_id, stability: stability, similarity_boost: similarity_boost}))
-			  .then(response => response.blob())
-			  .then(blob => {
-			    output.src = window.URL.createObjectURL(blob);
-			    output.play();
-			  })
-			  .catch(error => console.error(error));
-		},
+		} = {}) {
+			if (text === undefined || output === undefined || voice_id === undefined) return;  // this should never happen
 
-		setupPlayer = () => document.querySelectorAll("[data-player]").forEach(el => {
-			const 
-			play = el.querySelector("[data-player-play]"),
-			voices = el.querySelector("[data-player-voices]"),
-			text = el.querySelector("[data-player-text]"),
-			output = el.querySelector("[data-player-output]");
+			fetch(getUrl({ voice_id: voice_id }), getOptions({text: text, model_id: model_id, stability: stability, similarity_boost: similarity_boost}))
+				.then(response => response.blob())
+				.then(blob => {
+					output.src = window.URL.createObjectURL(blob);
+					output.play();
+				})
+				.catch(error => console.error(error));
+		}
 
-			play.addEventListener("click", e => {
-				fetchAndPlayAudio({
-					text: text.value,
-					output: output,
-					voice_id: '21m00Tcm4TlvDq8ikWAM'
+		function voiceOption({ voice_id, name, labels }) {
+			return `<option value="${voice_id}">${name} (`
+				+ Object.entries(labels).map(([k, v]) => v).join(", ")
+				+ `)</options>`;
+		}
+
+		function setupPlayers() {
+			document.querySelectorAll("[data-player]").forEach(el => {
+				const 
+				play = el.querySelector("[data-player-play]"),
+				voices = el.querySelector("[data-player-voices]"),
+				text = el.querySelector("[data-player-text]"),
+				output = el.querySelector("[data-player-output]");
+
+				// add event listener to play audio
+				play.addEventListener("click", e => {
+					fetchAndPlayAudio({
+						text: text.value,
+						output: output,
+						voice_id: voices.value
+					});
 				});
-			})
-		}),
+
+				// Populate dropdown with list of voices
+				voices.innerHTML = '';
+				fetch('https://api.elevenlabs.io/v1/voices')
+					.then((response) => response.json())
+					.then((json) => json.voices)
+					.then((vs) => voices.innerHTML = vs.map(voiceOption).join(""));
+			});
+		}
 
 		// actual setup is here:
-		setupPlayer();
+		setupPlayers();
 
 	</script>
 
