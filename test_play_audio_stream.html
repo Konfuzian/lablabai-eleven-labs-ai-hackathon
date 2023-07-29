@@ -17,54 +17,57 @@
 
 		// we use objects to simulate named parameters as in https://masteringjs.io/tutorials/fundamentals/parameters
 
-		function getOptions({ text = '', model_id = "eleven_monolingual_v1", stability = 0.5, similarity_boost = 0.5 } = {}) {
-			return {
-				method: 'POST',
-				body: JSON.stringify({
-					text: text,
-					model_id: model_id,
-					voice_settings: {
-						stability: stability,
-						similarity_boost: similarity_boost
-					}
-				}),
-				headers: {
-					"Content-Type": "application/json",
-					"xi-api-key": "a5c043e13ce68da1077daa5cb776c59b"
-				}
-			};
-		}
-
-		function getUrl({ voice_id = '21m00Tcm4TlvDq8ikWAM' } = {}) {
-			return `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream`;
-		}
-
-		function fetchAndPlayAudio({
-			text = undefined,
-			output = undefined,
-			voice_id = undefined,
-			model_id = "eleven_monolingual_v1",
-			stability = 0.5,
-			similarity_boost = 0.5
-		} = {}) {
-			if (text === undefined || output === undefined || voice_id === undefined) return;  // this should never happen
-
-			fetch(getUrl({ voice_id: voice_id }), getOptions({text: text, model_id: model_id, stability: stability, similarity_boost: similarity_boost}))
-				.then(response => response.blob())
-				.then(blob => {
-					output.src = window.URL.createObjectURL(blob);
-					output.play();
-				})
-				.catch(error => console.error(error));
-		}
-
-		function voiceOption({ voice_id, name, labels }) {
-			return `<option value="${voice_id}">${name} (`
-				+ Object.entries(labels).map(([k, v]) => v).join(", ")
-				+ `)</options>`;
-		}
-
 		function setupPlayers() {
+
+			function getOptions({ text = '', model_id = "eleven_monolingual_v1", stability = 0.5, similarity_boost = 0.5 } = {}) {
+				return {
+					method: 'POST',
+					body: JSON.stringify({
+						text: text,
+						model_id: model_id,
+						voice_settings: {
+							stability: stability,
+							similarity_boost: similarity_boost
+						}
+					}),
+					headers: {
+						"Content-Type": "application/json",
+						"xi-api-key": "a5c043e13ce68da1077daa5cb776c59b"
+					}
+				};
+			}
+
+			function getUrl({ voice_id = '21m00Tcm4TlvDq8ikWAM' } = {}) {
+				return `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream`;
+			}
+
+			function fetchAndPlayAudio({
+				output = undefined,
+				text = undefined,
+				voice_id = undefined,
+				model_id = "eleven_monolingual_v1",
+				stability = 0.5,
+				similarity_boost = 0.5
+			} = {}) {
+				if (text === undefined || output === undefined || voice_id === undefined) return;  // this should never happen
+
+				fetch(getUrl({ voice_id: voice_id }), getOptions({text: text, model_id: model_id, stability: stability, similarity_boost: similarity_boost}))
+					.then(response => response.blob())
+					.then(blob => {
+						output.src = window.URL.createObjectURL(blob);
+						output.play();
+					})
+					.catch(error => console.error(error));
+			}
+
+			function voiceOption({ voice_id, name, labels }) {
+				return `<option value="${voice_id}">${name} (`
+					+ Object.entries(labels).map(([k, v]) => v).join(", ")
+					+ `)</options>`;
+			}
+
+
+			// implementation starts here
 			document.querySelectorAll("[data-player]").forEach(el => {
 				const 
 				play = el.querySelector("[data-player-play]"),
@@ -75,8 +78,8 @@
 				// add event listener to play audio
 				play.addEventListener("click", e => {
 					fetchAndPlayAudio({
-						text: text.value,
 						output: output,
+						text: text.value,
 						voice_id: voices.value
 					});
 				});
@@ -90,8 +93,16 @@
 			});
 		}
 
-		// actual setup is here:
+		async function fetchGutenbergBooks() {
+			response = await fetch("https://gutendex.com/books");
+			json = await response.json();
+			books = json.results;
+			console.log(books);
+		}
+
+		// actual setup is here
 		setupPlayers();
+		fetchGutenberg();
 
 	</script>
 
