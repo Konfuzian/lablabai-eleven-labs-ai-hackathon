@@ -11,13 +11,52 @@
 
 <style>
 
-	label {
-		display: contents;
+	#brand {
+		margin-left: 1rem;
+		margin-bottom: 0;
+		font-size: 2rem;
+	}
+
+	#logo {
+		width: 1.5rem;
+		margin-top: -3px;
+		margin-left: 1px;
+		margin-right: -3px;
+	}
+
+	#voices {
+		margin-bottom: 0;
+	}
+
+	#voices ul {
+	    overflow-y: scroll;
+    	max-height: 20rem;
+	}
+
+	.container img {
+		float: left;
+		margin: 2rem;
+	}
+
+	audio {
+		margin-right: 2rem;
+	}
+
+	nav {
+		position: sticky;
+		top: 0;
+		z-index: 999;
+		background-color: #fff;
+		padding: 1rem;
 	}
 
 	mark {
 		font-size: 0.8rem;
 		color: #222222;
+	}
+
+	input[type="radio"] {
+		display: none;
 	}
 
 	.voice-accent {
@@ -45,31 +84,547 @@
 
 </head>
 <body>
-<main class="container">
 
-<details id="details" role="list">
-  <summary aria-haspopup="listbox">Select voice...</summary>
-  <ul role="listbox">
-    <li _="on click put my.innerHTML into the previous <summary/>
-    		then remove @open from #details">
-      <label for="rachel">
-        <input type="radio" id="rachel" name="size" value="21m00Tcm4TlvDq8ikWAM">
-        Rachel
-        <mark class="voice-accent">american</mark>
-        <mark class="voice-description">calm</mark>
-        <mark class="voice-age">young</mark>
-        <mark class="voice-gender">female</mark>
-        <mark class="voice-usecase">narration</mark>
-      </label>
-    </li>
-    <li _="on click put my.textContent into the previous <summary/>">
-      <label for="Clyde">
-        <input type="radio" id="Clyde" name="size" value="2EiwWnXFnvU5JabPnv8n">
-        Clyde
-      </label>
-    </li>
-  </ul>
-</details>
+<nav>
+<ul>
+	<!-- left content -->
+	<h1 id="brand">Project Gutenb<img id="logo" src="borg-icon.png"></img>rg</h1>
+</ul>
+
+<ul>
+	<!-- middle content -->
+	<details id="voices" role="list">
+	  <summary aria-haspopup="listbox">
+	  	<!-- default voice -->
+	      <label for="Rachel">
+	        <input type="radio" id="Rachel" name="voices" value="21m00Tcm4TlvDq8ikWAM" checked>
+	        Rachel
+	        <mark class="voice-accent">american</mark>
+	        <mark class="voice-description">calm</mark>
+	        <mark class="voice-age">young</mark>
+	        <mark class="voice-gender">female</mark>
+	        <mark class="voice-usecase">narration</mark>
+	      </label>
+	  </summary>
+		<ul role="listbox" id="voices-options">
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Rachel">
+		        <input type="radio" id="Rachel" name="voices" value="21m00Tcm4TlvDq8ikWAM">
+		        Rachel
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">calm</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Clyde">
+		        <input type="radio" id="Clyde" name="voices" value="2EiwWnXFnvU5JabPnv8n">
+		        Clyde
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">war veteran</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Domi">
+		        <input type="radio" id="Domi" name="voices" value="AZnzlk1XvdvUeBnXmlld">
+		        Domi
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">strong</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Dave">
+		        <input type="radio" id="Dave" name="voices" value="CYw3kZ02Hs0563khs1Fj">
+		        Dave
+		        <mark class="voice-accent">british-essex</mark>
+		        <mark class="voice-description">conversational</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Fin">
+		        <input type="radio" id="Fin" name="voices" value="D38z5RcWu1voky8WS1ja">
+		        Fin
+		        <mark class="voice-accent">irish</mark>
+		        <mark class="voice-description">sailor</mark>
+		        <mark class="voice-age">old</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Bella">
+		        <input type="radio" id="Bella" name="voices" value="EXAVITQu4vr4xnSDxMaL">
+		        Bella
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">soft</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Antoni">
+		        <input type="radio" id="Antoni" name="voices" value="ErXwobaYiN019PkySvjV">
+		        Antoni
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">well-rounded</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Thomas">
+		        <input type="radio" id="Thomas" name="voices" value="GBv7mTt0atIp3Br8iCZE">
+		        Thomas
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">calm</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">meditation</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Charlie">
+		        <input type="radio" id="Charlie" name="voices" value="IKne3meq5aSn9XLyUdCD">
+		        Charlie
+		        <mark class="voice-accent">australian</mark>
+		        <mark class="voice-description">casual</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">conversational</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Emily">
+		        <input type="radio" id="Emily" name="voices" value="LcfcDJNUP1GQjkzn1xUU">
+		        Emily
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">calm</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">meditation</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Elli">
+		        <input type="radio" id="Elli" name="voices" value="MF3mGyEYCl7XYWbV9V6O">
+		        Elli
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">emotional</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Callum">
+		        <input type="radio" id="Callum" name="voices" value="N2lVS1w4EtoT3dr4eOWO">
+		        Callum
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">hoarse</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Patrick">
+		        <input type="radio" id="Patrick" name="voices" value="ODq5zmih8GrVes37Dizd">
+		        Patrick
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">shouty</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Harry ">
+		        <input type="radio" id="Harry " name="voices" value="SOYHLrjzK2X1ezoPC6cr">
+		        Harry 
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">anxious</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Liam">
+		        <input type="radio" id="Liam" name="voices" value="TX3LPaxmHKxFdv7VOQHJ">
+		        Liam
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">neutral</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Dorothy">
+		        <input type="radio" id="Dorothy" name="voices" value="ThT5KcBeYPX3keUQqHPh">
+		        Dorothy
+		        <mark class="voice-accent">british</mark>
+		        <mark class="voice-description">pleasant</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">children's stories</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Josh">
+		        <input type="radio" id="Josh" name="voices" value="TxGEqnHWrfWFTfGW9XjX">
+		        Josh
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">deep</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Arnold">
+		        <input type="radio" id="Arnold" name="voices" value="VR6AewLTigWG4xSOukaG">
+		        Arnold
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">crisp</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Charlotte">
+		        <input type="radio" id="Charlotte" name="voices" value="XB0fDUnXU5powFXDhCwa">
+		        Charlotte
+		        <mark class="voice-accent">english-swedish</mark>
+		        <mark class="voice-description">seductive</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Matilda ">
+		        <input type="radio" id="Matilda " name="voices" value="XrExE9yKIg1WjnnlVkGX">
+		        Matilda 
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">warm</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">audiobook</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Matthew">
+		        <input type="radio" id="Matthew" name="voices" value="Yko7PKHZNXotIFUBG7I9">
+		        Matthew
+		        <mark class="voice-accent">british</mark>
+		        <mark class="voice-description">calm</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">audiobook</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="James">
+		        <input type="radio" id="James" name="voices" value="ZQe5CZNOzWyzPSCn5a3c">
+		        James
+		        <mark class="voice-accent">australian</mark>
+		        <mark class="voice-description">calm </mark>
+		        <mark class="voice-age">old</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">news</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Joseph">
+		        <input type="radio" id="Joseph" name="voices" value="Zlb1dXrM653N07WRdFW3">
+		        Joseph
+		        <mark class="voice-accent">british</mark>
+		        <mark class="voice-description">ground reporter </mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">news</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Jeremy">
+		        <input type="radio" id="Jeremy" name="voices" value="bVMeCyTHy58xNoL34h3p">
+		        Jeremy
+		        <mark class="voice-accent">american-irish</mark>
+		        <mark class="voice-description">excited</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Michael ">
+		        <input type="radio" id="Michael " name="voices" value="flq6f7yk4E4fJM5XTYuZ">
+		        Michael 
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">orotund</mark>
+		        <mark class="voice-age">old</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">audiobook</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Ethan">
+		        <input type="radio" id="Ethan" name="voices" value="g5CIjZEefAph4nQFvHAz">
+		        Ethan
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">whisper</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">ASMR</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Gigi">
+		        <input type="radio" id="Gigi" name="voices" value="jBpfuIE2acCO8z3wKNLl">
+		        Gigi
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">childlish</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">animation</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Freya">
+		        <input type="radio" id="Freya" name="voices" value="jsCqWAovK2LkecY7zXl4">
+		        Freya
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">overhyped</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">undefined</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Grace">
+		        <input type="radio" id="Grace" name="voices" value="oWAxZDx7w5VEj9dCyTzz">
+		        Grace
+		        <mark class="voice-accent">american-southern</mark>
+		        <mark class="voice-description">gentle</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">audiobook </mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Daniel">
+		        <input type="radio" id="Daniel" name="voices" value="onwK4e9ZLuTAKqWW03F9">
+		        Daniel
+		        <mark class="voice-accent">british</mark>
+		        <mark class="voice-description">deep</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">news presenter</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Serena">
+		        <input type="radio" id="Serena" name="voices" value="pMsXgVXv3BLzUgSXRplE">
+		        Serena
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">pleasant</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">interactive</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Adam">
+		        <input type="radio" id="Adam" name="voices" value="pNInz6obpgDQGcFmaJgB">
+		        Adam
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">deep</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Nicole">
+		        <input type="radio" id="Nicole" name="voices" value="piTKgcLEGmPE4e6mEKli">
+		        Nicole
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">whisper</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">audiobook</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Jessie">
+		        <input type="radio" id="Jessie" name="voices" value="t0jbNlBVZ17f02VDIeMI">
+		        Jessie
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">raspy </mark>
+		        <mark class="voice-age">old</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Ryan ">
+		        <input type="radio" id="Ryan " name="voices" value="wViXBPUzp2ZZixB1xQuM">
+		        Ryan 
+		        <mark class="voice-accent">undefined</mark>
+		        <mark class="voice-description">soldier</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">audiobook</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Sam">
+		        <input type="radio" id="Sam" name="voices" value="yoZ06aMxZJJ28mfd3POQ">
+		        Sam
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">raspy</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">narration</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Glinda">
+		        <input type="radio" id="Glinda" name="voices" value="z9fAnlkpzviPz146aGWa">
+		        Glinda
+		        <mark class="voice-accent">american</mark>
+		        <mark class="voice-description">witch</mark>
+		        <mark class="voice-age">middle aged</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">video games</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Giovanni">
+		        <input type="radio" id="Giovanni" name="voices" value="zcAOhNBS3c14rBihAFp1">
+		        Giovanni
+		        <mark class="voice-accent">english-italian</mark>
+		        <mark class="voice-description">foreigner</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">male</mark>
+		        <mark class="voice-usecase">audiobook</mark>
+		      </label>
+		    </li>
+		
+		    <li _="on click put my.innerHTML into the previous <summary/>
+		    		then remove @open from #voices">
+		      <label for="Mimi ">
+		        <input type="radio" id="Mimi " name="voices" value="zrHiDhphv9ZnVXBqCLjz">
+		        Mimi 
+		        <mark class="voice-accent">english-swedish</mark>
+		        <mark class="voice-description">childish</mark>
+		        <mark class="voice-age">young</mark>
+		        <mark class="voice-gender">female</mark>
+		        <mark class="voice-usecase">animation</mark>
+		      </label>
+		    </li>
+		</ul>
+	</details>
+</ul>
+
+<ul>
+	<!-- right content -->
+	<audio controls id="player"></audio>
+</ul>
+
+</nav>
+
+<main class="container">
 
 	<section data-players>
 		<!-- will be populated on load -->
@@ -81,39 +636,59 @@
 
 		// we use objects to simulate named parameters as in https://masteringjs.io/tutorials/fundamentals/parameters
 
-		function addPlayer(book) {
+		function populateVoices() {
+			// not sure why but the dropdown stops working when i populate it with this function,
+			// but this is a hackathon so i'll just hardcode it
+
 			function voiceOption({ voice_id, name, labels }) {
-				return `<option value="${voice_id}">${name} (`
-					+ Object.entries(labels).map(([k, v]) => v).join(", ")
-					+ `)</options>`;
+				return `
+				    <li _="on click put my.innerHTML into the previous <summary/>
+				    		then remove @open from #voices">
+				      <label for="${name}">
+				        <input type="radio" id="${name}" name="voices" value="${voice_id}">
+				        ${name}
+				        <mark class="voice-accent">${labels["accent"]}</mark>
+				        <mark class="voice-description">${labels["description"] ?? labels["description "]}</mark>
+				        <mark class="voice-age">${labels["age"]}</mark>
+				        <mark class="voice-gender">${labels["gender"]}</mark>
+				        <mark class="voice-usecase">${labels["use case"]}</mark>
+				      </label>
+				    </li>
+				`;
 			}
+
+			const voices_options = document.getElementById("voices-options")
+
+			// Populate dropdown with list of voices
+			fetch('https://api.elevenlabs.io/v1/voices')
+				.then((response) => response.json())
+				.then((json) => json.voices)
+				.then((vs) => voices_options.innerHTML = vs.map(voiceOption).join(""));
+		}
+
+		function addPlayer(book) {
 
 			document.querySelectorAll("[data-players]").forEach(el => {
 				let
 				image = document.createElement("img"),
 				title = document.createElement("h2"),
 				authors = document.createElement("h3"),
-				voices = document.createElement("select"),
-				textarea = document.createElement("textarea"),
-				play = document.createElement("button"),
-				output = document.createElement("audio");
+				textarea = document.createElement("p"),
+				play = document.createElement("button");
 
 				image.src = book.image;
 				title.innerHTML = book.title;
 				authors.innerHTML = book.authors;
 				textarea.innerHTML = book.text.substring(0, 500);
 				play.type = "button";
-				play.innerHTML = "Play";
-				output.controls = "controls";
+				play.innerHTML = "Generate audio";
 
 				let div = document.createElement("div");
 				div.appendChild(image);
 				div.appendChild(title);
 				div.appendChild(authors);
-				div.appendChild(voices);
 				div.appendChild(textarea);
 				div.appendChild(play);
-				div.appendChild(output);
 
 				el.appendChild(div);
 
@@ -121,17 +696,12 @@
 				// add event listener to play audio
 				play.addEventListener("click", e => {
 					fetchAndPlayAudio({
-						output: output,
-						text: textarea.value,
-						voice_id: voices.value
+						output: document.getElementById("player"),
+						text: textarea.innerHTML,
+						voice_id: document.querySelector('input[name="voices"]:checked').value
 					});
 				});
 
-				// Populate dropdown with list of voices
-				fetch('https://api.elevenlabs.io/v1/voices')
-					.then((response) => response.json())
-					.then((json) => json.voices)
-					.then((vs) => voices.innerHTML = vs.map(voiceOption).join(""));
 			});
 		}
 
@@ -165,7 +735,13 @@
 			stability = 0.5,
 			similarity_boost = 0.5
 		} = {}) {
-			if (text === undefined || output === undefined || voice_id === undefined) return;  // this should never happen
+			if (text === undefined || output === undefined || voice_id === undefined) {
+				console.log("text or output or voice_id is undefined, abort!!!");
+				console.log(text);
+				console.log(output);
+				console.log(voice_id);
+				return;  // this should never happen
+			}
 
 			fetch(getUrl({ voice_id: voice_id }), getOptions({text: text, model_id: model_id, stability: stability, similarity_boost: similarity_boost}))
 				.then(response => response.blob())
@@ -403,7 +979,9 @@
 		  }
 		];
 
-		gutenberg_books.forEach((book) => addPlayer(book))
+		// setup implementation is here
+		//populateVoices();
+		gutenberg_books.forEach((book) => addPlayer(book));
 
 	</script>
 
